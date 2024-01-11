@@ -64,21 +64,24 @@ class lil_circle():
 
 gravity = -0.5
 
+
+
 c = []
-for i in range(10):
-    c1 = lil_circle(x0 = random.randrange(100,700),
-                    y0 = random.randrange(-500,-100),
-                    v0=random.randrange(0,10),
-                    angel=random.randrange(-90,90),
-                    color = list(random.randrange(256) for _ in range(3)))
-    c.append(c1)
 
 
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                c1 = lil_circle(x0=event.pos[0],
+                                y0=-event.pos[1],
+                                v0=random.randrange(0, 10),
+                                angel=random.randrange(-90, 90),
+                                color=list(random.randrange(256) for _ in range(3)))
+                c.append(c1)
+                print(f'x0={event.pos[0]}, y0={event.pos[1]}')
 
 
     screen.fill((0, 0, 0))
@@ -90,7 +93,7 @@ while not done:
     for c1 in c:
         c1.drow()
         o+=1
-        print(f'{o}) x={c1.x}, y={c1.y}')
+        # print(f'{o}) x={c1.x}, y={c1.y}')
 
 
 
