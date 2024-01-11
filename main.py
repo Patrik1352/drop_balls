@@ -25,7 +25,7 @@ class lil_circle():
 
     def drow(self):
         self.coor()
-        pygame.draw.circle(screen, self.color, (self.x, -self.y), 7, 2)
+        pygame.draw.circle(screen, self.color, (self.x, -self.y), 7,3)
 
     def coor(self):
 
@@ -35,22 +35,22 @@ class lil_circle():
         self.x = self.x0 + self.vx*self.t
 
         # if (self.x-400)**2+(self.y-300)**2 >= 200**2:
-        if self.y<=-500 or self.y>=-100:
+        if self.y<=-500+3 or self.y>=-100-3:
 
             self.t = 0
             self.vy = -self.v
             self.y0 = self.y
             self.x0 = self.x
-            self.y = -500+7 if self.y<=-500 else -100-7
+            self.y = -500+3 if self.y<=-500+3 else -100-3
 
-        if self.x >= 700 or self.x <= 100:
+        if self.x >= 700-3 or self.x <= 100+3:
             self.t = 0
             self.vx = -self.vx
             self.vy = self.v
             self.y0 = self.y
             self.x0 = self.x
 
-            self.x = 700 - 7 if self.x >= 700 else 100 + 7
+            self.x = 700-3  if self.x >= 700-3 else 100+3
 
         self.t += 1
 
@@ -73,6 +73,7 @@ for i in range(10):
                     color = list(random.randrange(256) for _ in range(3)))
     c.append(c1)
 
+
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -83,11 +84,13 @@ while not done:
     screen.fill((0, 0, 0))
     # большая окружность
     # pygame.draw.circle(screen, (255, 189, 211), (400, 300), 200, 5)
-    pygame.draw.rect(screen, (255, 189, 211), (100, 100, 600, 400), 5)
+    pygame.draw.rect(screen, (255, 255, 255), (100, 100, 600, 400), 3)
 
-
+    o = 0
     for c1 in c:
         c1.drow()
+        o+=1
+        print(f'{o}) x={c1.x}, y={c1.y}')
 
 
 
