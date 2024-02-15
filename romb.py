@@ -1,7 +1,7 @@
 import pygame
 import math
 import random
-import gc
+
 
 
 WIDTH = 800
